@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Dish } from '../Domains/dish';
-import { DISHES } from '../Domains/dishes';
+import { DishService } from '../Services/dish.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,13 +10,16 @@ import { DISHES } from '../Domains/dishes';
 export class MenuComponent implements OnInit {
 
   //typescript assign the datatype of DISHES to dishes automatically
-  dishes = DISHES;  
+  dishes: Dish[];  
 
   selectedDish: Dish;
 
-  constructor() { }
+  constructor(private dishService: DishService) { }
 
   ngOnInit() {
+
+    this.dishes = this.dishService.getDishes();
+
   }
 
   onSelect(selectedDish: Dish) {
