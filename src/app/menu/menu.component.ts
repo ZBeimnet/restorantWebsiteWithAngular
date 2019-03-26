@@ -12,18 +12,19 @@ export class MenuComponent implements OnInit {
   //typescript assign the datatype of DISHES to dishes automatically
   dishes: Dish[];  
 
-  selectedDish: Dish;
+  // selectedDish: Dish;
 
   constructor(private dishService: DishService) { }
 
   ngOnInit() {
 
-    this.dishes = this.dishService.getDishes();
+    this.dishService.getDishes()
+      .then((dishes) => this.dishes = dishes);
 
   }
 
-  onSelect(selectedDish: Dish) {
-    this.selectedDish = selectedDish;  
-  }
+  // onSelect(selectedDish: Dish) {
+  //   this.selectedDish = selectedDish;  
+  // }
 
 }
