@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
 
   //typescript assign the datatype of DISHES to dishes automatically
   dishes: Dish[];  
+  errMessage: string;
 
   constructor(private dishService: DishService,
     @Inject('BaseURL') private BaseURL) { }
@@ -18,7 +19,8 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
 
     this.dishService.getDishes()
-      .subscribe((dishes) => this.dishes = dishes);
+      .subscribe((dishes) => this.dishes = dishes,
+        errMessage => this.errMessage = <any>errMessage);
 
   }
 
